@@ -8,13 +8,15 @@
 #-------------------------------------------------------------------------------
 import os
 import sys
+import zipfile
 _fmtPassed = "Passed: {}"
 _fmtFailed = "Failed: {}\n  Expect: {}\n  Actual: {}"
 _scriptFolder = os.path.dirname(os.path.abspath(__file__))
 
 def main():
-    test_exportToKml()
-    #print test_exportToKmz()
+        ##test_exportToKml()
+
+        test_exportToKmz()
 
 def exportToKml(inFile, outKml):
     """converts the input data and exports it as a kml file"""
@@ -54,7 +56,13 @@ def getKmlFooter():
     return "</Document>"+'\n'+'</kml>'+'\n'
 #havent finished export to kmz yet
 def exportToKmz(Kml):
-    pass
+    """exports input KML as a KMZ"""
+    open_kml=open(Kml,'r')
+    zf=zipfile.ZipFile('Quakes2000_KMZ.kmz',mode='w')
+    zf.write(Kml)
+    zf.close()
+    open_kml.close()
+
 def test_exportToKml():
     # Test case 1
     expected = "expected value"
@@ -68,7 +76,7 @@ def test_exportToKml():
     # Test case 2 ...
 
 def test_exportToKmz():
-    exportToKmz(os.path.join(_scriptFolder,'Quakes2000.KML'))
+    exportToKmz(os.path.join(_scriptFolder,'Quakes2000_kml.KML'))
 
 if __name__ == '__main__':
     main()
