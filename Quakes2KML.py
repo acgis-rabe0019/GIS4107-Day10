@@ -54,7 +54,7 @@ def getKmlPlacemark(longitude,latitude,depth,magnitude):
 def getKmlFooter():
     """returns the kml footer"""
     return "</Document>"+'\n'+'</kml>'+'\n'
-#havent finished export to kmz yet
+
 def exportToKmz(Kml):
     """exports input KML as a KMZ"""
     open_kml=open(Kml,'r')
